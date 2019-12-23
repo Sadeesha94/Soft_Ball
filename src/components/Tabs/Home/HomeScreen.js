@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { HeaderBar } from '../../Header/HeaderBar'
-import { Text, Container, Button, Card, CardItem, Body, Content } from 'native-base';
+import { Text, Container, Card, CardItem, Body, Content } from 'native-base';
 
 export class HomeScreen extends React.Component {
     render() {

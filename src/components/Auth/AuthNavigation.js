@@ -25,11 +25,10 @@ const AuthStack = createStackNavigator(
 export const AllAuthNavigator = createSwitchNavigator(
     {
         Loading: LoadingScreen,
-        App: HomeScreen,
         Auth: AuthStack
     },
     {
-        initialRouteName: "Auth"
+        initialRouteName: "Loading"
     }
 
 )

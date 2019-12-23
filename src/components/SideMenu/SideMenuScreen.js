@@ -6,20 +6,25 @@ import * as firebase from 'firebase'
 export class SideMenuScreen extends React.Component {
 
     state = {
-        email: ""
+        email: "",
+        displayName: ""
     };
 
-    // componentDidMount() {
-    //     const { email } = firebase.auth().currentUser;
-
-    //     this.setState({ email });
-    // }
+    state = { currentUser: null }
+    componentDidMount() {
+        const { currentUser } = firebase.auth()
+        this.setState({ currentUser })
+    }
 
     signOutUser = () => {
-        firebase.auth().signOut();
+        firebase.auth().signOut().then(() => {
+            //alert("You are now logged in");
+            this.setState({ currentUser: null });
+        });
     }
 
     render() {
+        const { currentUser } = this.state
         return (
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ height: 150, alignItems: "center", justifyContent: "center" }}>
@@ -30,7 +35,7 @@ export class SideMenuScreen extends React.Component {
                 <ScrollView>
                     <List>
                         <ListItem>
-                            <Text>Hi {this.state.email}</Text>
+                            <Text>Hi {currentUser && currentUser.displayName}</Text>
                         </ListItem>
                         <ListItem>
                             <Text>Settings</Text>

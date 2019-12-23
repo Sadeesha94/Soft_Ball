@@ -10,6 +10,17 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Container } from 'native-base';
 import { HomeScreen, MatchesScreen, NewsScreen, VideosScreen, HomeDetailsScreen, SideMenuScreen } from './src/components'
 import { AllAuthNavigator } from './src/components/Auth/AuthNavigation'
+import * as firebase from "firebase";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAiKyd0L3Faj1_QJ3et_6xTXB55UVj821A",
+  authDomain: "soft-ball-sl.firebaseapp.com",
+  databaseURL: "https://soft-ball-sl.firebaseio.com",
+  projectId: "soft-ball-sl",
+  storageBucket: "soft-ball-sl.appspot.com"
+}
+
+firebase.initializeApp(firebaseConfig);
 
 export default class App extends React.Component {
 
