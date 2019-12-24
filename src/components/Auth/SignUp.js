@@ -8,7 +8,8 @@ export class SignUpScreen extends React.Component {
         header: null
     };
 
-    state = { name: "", email: "", password: "", errorMessage: null };
+    state = { email: "", password: "", errorMessage: null };
+
 
     signUpUser = () => {
 
@@ -20,11 +21,7 @@ export class SignUpScreen extends React.Component {
         firebase
             .auth()
             .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(userCredentials => {
-                return userCredentials.user.updateProfile({
-                    displayName: this.state.name
-                });
-            });
+            .catch(error => this.setState({ errorMessage: error.message }));
     };
 
     render() {
@@ -63,15 +60,51 @@ export class SignUpScreen extends React.Component {
 
                         <View style={styles.form}>
                             <View>
-                                <Text style={styles.inputTitle}>Full Name</Text>
+                                <Text style={styles.inputTitle}>First Name</Text>
                                 <TextInput
                                     style={styles.input}
-                                    onChangeText={name => this.setState({ name })}
-                                    value={this.state.name}
+                                    onChangeText={firstName => this.setState({ firstName })}
+                                    value={this.state.firstName}
                                 ></TextInput>
                             </View>
 
-                            <View style={{ marginTop: 32 }}>
+                            <View style={{ marginTop: 20 }}>
+                                <Text style={styles.inputTitle}>Last Name</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={lastName => this.setState({ lastName })}
+                                    value={this.state.lastName}
+                                ></TextInput>
+                            </View>
+
+                            <View style={{ marginTop: 20 }}>
+                                <Text style={styles.inputTitle}>Age</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={age => this.setState({ age })}
+                                    value={this.state.age}
+                                ></TextInput>
+                            </View>
+
+                            <View style={{ marginTop: 20 }}>
+                                <Text style={styles.inputTitle}>Role</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={role => this.setState({ role })}
+                                    value={this.state.role}
+                                ></TextInput>
+                            </View>
+
+                            <View style={{ marginTop: 20 }}>
+                                <Text style={styles.inputTitle}>Team Name</Text>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={teamName => this.setState({ teamName })}
+                                    value={this.state.teamName}
+                                ></TextInput>
+                            </View>
+
+                            <View style={{ marginTop: 20 }}>
                                 <Text style={styles.inputTitle}>Email Address</Text>
                                 <TextInput
                                     style={styles.input}
@@ -81,7 +114,7 @@ export class SignUpScreen extends React.Component {
                                 ></TextInput>
                             </View>
 
-                            <View style={{ marginTop: 32 }}>
+                            <View style={{ marginTop: 20 }}>
                                 <Text style={styles.inputTitle}>Password</Text>
                                 <TextInput
                                     style={styles.input}
@@ -98,7 +131,7 @@ export class SignUpScreen extends React.Component {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            style={{ alignSelf: "center", marginTop: 32 }}
+                            style={{ alignSelf: "center", marginTop: 20, marginBottom: 40 }}
                             onPress={() => this.props.navigation.navigate("Login")}
                         >
                             <Text style={{ color: "#414959", fontSize: 13 }}>
@@ -118,14 +151,14 @@ const styles = StyleSheet.create({
         flex: 1
     },
     greeting: {
-        marginTop: 32,
+        marginTop: 20,
         fontSize: 18,
         fontWeight: "500",
         textAlign: "center",
         color: "#FFF"
     },
     form: {
-        marginBottom: 48,
+        marginBottom: 40,
         marginHorizontal: 30
     },
     inputTitle: {
@@ -143,7 +176,7 @@ const styles = StyleSheet.create({
     button: {
         marginHorizontal: 30,
         backgroundColor: "#E9446A",
-        borderRadius: 4,
+        borderRadius: 35,
         height: 52,
         alignItems: "center",
         justifyContent: "center"
@@ -176,7 +209,7 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor: "#E1E2E6",
         borderRadius: 50,
-        marginTop: 48,
+        marginTop: 30,
         justifyContent: "center",
         alignItems: "center"
     }

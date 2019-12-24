@@ -6,11 +6,11 @@ import * as firebase from 'firebase'
 export class SideMenuScreen extends React.Component {
 
     state = {
-        email: "",
-        displayName: ""
+        email: ""
     };
 
     state = { currentUser: null }
+
     componentDidMount() {
         const { currentUser } = firebase.auth()
         this.setState({ currentUser })
@@ -18,7 +18,7 @@ export class SideMenuScreen extends React.Component {
 
     signOutUser = () => {
         firebase.auth().signOut().then(() => {
-            //alert("You are now logged in");
+            //alert("You are now logged out");
             this.setState({ currentUser: null });
         });
     }
@@ -35,7 +35,7 @@ export class SideMenuScreen extends React.Component {
                 <ScrollView>
                     <List>
                         <ListItem>
-                            <Text>Hi {currentUser && currentUser.displayName}</Text>
+                            <Text>Hi {currentUser && currentUser.email}</Text>
                         </ListItem>
                         <ListItem>
                             <Text>Settings</Text>
